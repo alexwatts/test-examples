@@ -37,7 +37,6 @@ public class MyStepdefs {
         }
     }
 
-
     private boolean randomOutcome() {
         Random rd = new Random();
         return rd.nextBoolean();

@@ -1,0 +1,43 @@
+pipeline {
+
+    agent {
+        kubernetes{
+            yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                  - name: gradle
+                    image: gradle:7.3-jdk11-alpine
+                    command:
+                    - cat
+                    tty: true
+                  - name: curl
+                    image: byrnedo/alpine-curl
+                    command:
+                    - cat
+                    tty: true
+                '''
+        }
+    }
+
+    stages {
+        stage('clone') {
+            steps {
+                sh "git clone https://github.com/alexwatts/test-examples"
+            }
+        }
+        stage('build') {
+            steps {
+              container('gradle') {
+                  catchError() {
+                       sh "gradle clean build -b test-examples/build.gradle"
+                  }
+                  container('curl') {
+                       sh "curl -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://161.35.33.182:30001/reports/test-examples"
+                  }
+              }
+            }
+        }
+    }
+}
