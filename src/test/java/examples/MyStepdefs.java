@@ -11,6 +11,7 @@ import static org.junit.Assert.fail;
 public class MyStepdefs {
     @Given("A login to a directory")
     public void aLoginToADirectory() {
+
     }
 
     @When("A combo box is selected")
