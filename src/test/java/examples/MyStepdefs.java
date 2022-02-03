@@ -43,7 +43,6 @@ public class MyStepdefs {
     @Then("A text box is visible")
     public void aTextBoxIsVisible() {
         if (randomOutcome()) {
-            driver.close();
             fail();
         }
     }
@@ -56,7 +55,6 @@ public class MyStepdefs {
     @Then("A submit button is active")
     public void aSubmitButtonIsActive() {
         if (randomOutcome()) {
-            driver.close();
             fail();
         }
     }
@@ -93,7 +91,6 @@ public class MyStepdefs {
     @Then("I get some results")
     public void iGetSomeResults() {
         if (randomOutcome()) {
-            driver.close();
             fail();
         }
     }
@@ -115,7 +112,7 @@ public class MyStepdefs {
         } catch (Exception ignored) {
 
         } finally {
-            driver.close();
+            if (driver != null) driver.close();
         }
     }
 
