@@ -18,7 +18,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
-import static org.junit.Assert.fail;
 
 public class MyStepdefs {
 
@@ -43,7 +42,6 @@ public class MyStepdefs {
     @Then("A text box is visible")
     public void aTextBoxIsVisible() {
         if (randomOutcome()) {
-            driver.quit();
             fail();
         }
     }
@@ -56,8 +54,7 @@ public class MyStepdefs {
     @Then("A submit button is active")
     public void aSubmitButtonIsActive() {
         if (randomOutcome()) {
-            driver.quit();
-            fail();
+
         }
     }
 
@@ -93,14 +90,12 @@ public class MyStepdefs {
     @Then("I get some results")
     public void iGetSomeResults() {
         if (randomOutcome()) {
-            driver.quit();
-            fail();
+
         }
     }
 
     @After
     public void afterScenario(Scenario scenario) {
-        System.out.println("IN AFTER");
         try {
             if (scenario.isFailed()) {
                 String scnShot;
@@ -113,13 +108,7 @@ public class MyStepdefs {
                 }
             }
         } catch (Exception ignored) {
-
-        } finally {
-            try {
-                if (driver != null) driver.close();
-            } catch  (Exception ignored) {
-
-            }
+            driver.quit();
         }
     }
 
