@@ -112,7 +112,10 @@ public class MyStepdefs {
         } catch (Exception ignored) {
 
         } finally {
-            if (driver != null) driver.close();
+            try {
+                if (driver != null) driver.close();
+            } catch  (Exception ignored) {
+        }
         }
     }
 
