@@ -81,7 +81,6 @@ public class MyStepdefs {
 
     private String resolveGridHostPort() {
         return "http://localhost:4444/wd/hub";
-        // return String.format("http://%s/wd/hub", System.getProperty("gridHostPort") != null ? System.getProperty("gridHostPort") : "////");
     }
 
     @When("and enter some search")
