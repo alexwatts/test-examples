@@ -16,7 +16,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 import static org.junit.Assert.fail;

@@ -1,5 +1,4 @@
 pipeline {
-
     agent {
         kubernetes{
             yaml '''
@@ -9,6 +8,11 @@ pipeline {
                   containers:
                   - name: gradle-chrome
                     image: jsantisi/alpine-gradle-chrome
+                    resources:
+                      requests:
+                        memory: "256Mi"
+                      limits:
+                        memory: "512Mi"
                     command:
                     - cat
                     tty: true
