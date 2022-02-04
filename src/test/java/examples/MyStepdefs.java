@@ -56,7 +56,7 @@ public class MyStepdefs {
     @Then("A submit button is active")
     public void aSubmitButtonIsActive() {
         if (randomOutcome()) {
-
+            fail();
         }
     }
 
@@ -80,8 +80,7 @@ public class MyStepdefs {
     }
 
     private String resolveGridHostPort() {
-        return "http://localhost:4444/wd/hub";
-       // return String.format("http://%s/wd/hub", System.getProperty("gridHostPort") != null ? System.getProperty("gridHostPort") : "////");
+        return String.format("http://%s/wd/hub", System.getProperty("gridHostPort") != null ? System.getProperty("gridHostPort") : "////");
     }
 
     @When("and enter some search")
@@ -92,7 +91,7 @@ public class MyStepdefs {
     @Then("I get some results")
     public void iGetSomeResults() {
         if (randomOutcome()) {
-
+            fail();
         }
     }
 
