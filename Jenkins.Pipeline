@@ -7,10 +7,24 @@ pipeline {
                 kind: Pod
                 spec:
                   containers:
-                  - name: gradle
-                    image: gradle:7.3-jdk11-alpine
+                  - name: gradle-chrome
+                    image: jsantisi/alpine-gradle-chrome
                     command:
                     - cat
+                    tty: true
+                  - name: selenium-hub
+                    image: selenium/hub:3.4.0
+                  - name: selenium-chrome
+                    image: selenium/node-chrome:3.4.0
+                    env:
+                    - name: HUB_PORT_4444_TCP_ADDR
+                      value: localhost
+                    - name: HUB_PORT_4444_TCP_PORT
+                      value: 4444
+                    - name: DISPLAY
+                      value: :99.0
+                    - name: SE_OPTS
+                      value: -port 5556
                     tty: true
                   - name: curl
                     image: byrnedo/alpine-curl
@@ -29,12 +43,12 @@ pipeline {
         }
         stage('build') {
             steps {
-              container('gradle') {
+              container('gradle-chrome') {
                   catchError() {
                        sh "gradle clean build -b test-examples/build.gradle"
                   }
                   container('curl') {
-                       sh "curl -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://161.35.33.182:30001/reports/test-examples"
+                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://138.68.170.14:30001/reports/test-examples"
                   }
               }
             }
