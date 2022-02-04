@@ -100,16 +100,13 @@ public class MyStepdefs {
     public void afterScenario(Scenario scenario) {
         try {
             if (scenario.isFailed()) {
-                String scnShot;
-                try {
-                    scnShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-                    String screenshot = "data:image/gif;base64, " + scnShot;
-                    scenario.attach(screenshot, "gif;base64", "screenshot");
-                } catch (Exception ignored) {
-
-                }
+                String scnShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+                String screenshot = "data:image/gif;base64, " + scnShot;
+                scenario.attach(screenshot, "gif;base64", "screenshot");
             }
         } catch (Exception ignored) {
+
+        } finally {
             driver.quit();
         }
     }
