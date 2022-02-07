@@ -6,13 +6,8 @@ pipeline {
                 kind: Pod
                 spec:
                   containers:
-                  - name: gradle-chrome
-                    image: jsantisi/alpine-gradle-chrome
-                    resources:
-                      requests:
-                        memory: "256Mi"
-                      limits:
-                        memory: "512Mi"
+                  - name: gradle
+                    image: registry.digitalocean.com/do-k8s-ecr/gradle-cache
                     command:
                     - cat
                     tty: true
@@ -47,9 +42,9 @@ pipeline {
         }
         stage('build') {
             steps {
-              container('gradle-chrome') {
+              container('gradle') {
                   catchError() {
-                       sh "gradle clean build -b test-examples/build.gradle"
+                       sh "gradle --no-daemon clean build -b test-examples/build.gradle"
                   }
                   container('curl') {
                        sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://138.68.170.14:30001/reports/test-examples"
