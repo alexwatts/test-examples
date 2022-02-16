@@ -44,10 +44,10 @@ pipeline {
             steps {
               container('gradle') {
                   catchError() {
-                       sh "gradle --no-daemon clean build -b test-examples/build.gradle"
+                       sh "gradle --no-daemon test -Dcucumber.options='@TeamTwo' -b test-examples/build.gradle"
                   }
                   container('curl') {
-                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://138.68.170.14:30001/reports/test-examples"
+                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://138.68.170.14:30001/reports/team-two"
                   }
               }
             }

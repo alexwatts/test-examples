@@ -65,23 +65,6 @@ public class MyStepdefs {
         this.driver.get("https://www.google.com");
     }
 
-    private boolean randomOutcome() {
-        Random rd = new Random();
-        return rd.nextBoolean();
-    }
-
-    private WebDriver resolveGridOrLocalDriver() {
-        try {
-            DesiredCapabilities dc = DesiredCapabilities.chrome();
-            return new RemoteWebDriver(new URL(resolveGridHostPort()), dc);
-        } catch (UnreachableBrowserException | MalformedURLException e) {
-            return new ChromeDriver();
-        }
-    }
-
-    private String resolveGridHostPort() {
-        return "http://localhost:4444/wd/hub";
-    }
 
     @When("and enter some search")
     public void andEnterSomeSearch() {
@@ -90,6 +73,47 @@ public class MyStepdefs {
 
     @Then("I get some results")
     public void iGetSomeResults() {
+        if (randomOutcome()) {
+            fail();
+        }
+    }
+
+    @Given("I make a new Transaction")
+    public void iMakeANewTransaction() {
+
+    }
+
+    @When("I click Confirm")
+    public void iClickConfirm() {
+    }
+
+    @Then("The transaction is accepted")
+    public void theTransactionIsAccepted() {
+    }
+
+    @Given("I locate a transaction")
+    public void iLocateATransaction() {
+    }
+
+    @When("A request a rollback of the transaction")
+    public void aRequestARollbackOfTheTransaction() {
+    }
+
+    @Then("The transaction is rolled back")
+    public void theTransactionIsRolledBack() {
+    }
+
+    @Given("I navigate to the transaction screen")
+    public void iNavigateToTheTransactionScreen() {
+        this.driver.get("https://www.bbc.co.uk/");
+    }
+
+    @When("The transactions are loaded")
+    public void theTransactionsAreLoaded() {
+    }
+
+    @Then("The active transactions are highlighted")
+    public void theActiveTransactionsAreHighlighted() {
         if (randomOutcome()) {
             fail();
         }
@@ -107,6 +131,24 @@ public class MyStepdefs {
         } finally {
             driver.quit();
         }
+    }
+
+    private boolean randomOutcome() {
+        Random rd = new Random();
+        return rd.nextBoolean();
+    }
+
+    private WebDriver resolveGridOrLocalDriver() {
+        try {
+            DesiredCapabilities dc = DesiredCapabilities.chrome();
+            return new RemoteWebDriver(new URL(resolveGridHostPort()), dc);
+        } catch (UnreachableBrowserException | MalformedURLException e) {
+            return new ChromeDriver();
+        }
+    }
+
+    private String resolveGridHostPort() {
+        return "http://localhost:4444/wd/hub";
     }
 
 }

@@ -1,0 +1,56 @@
+pipeline {
+    agent {
+        kubernetes{
+            yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                  - name: gradle
+                    image: registry.digitalocean.com/do-k8s-ecr/gradle-cache
+                    command:
+                    - cat
+                    tty: true
+                  - name: selenium-hub
+                    image: selenium/hub:3.4.0
+                  - name: selenium-chrome
+                    image: selenium/node-chrome:3.4.0
+                    env:
+                    - name: HUB_PORT_4444_TCP_ADDR
+                      value: localhost
+                    - name: HUB_PORT_4444_TCP_PORT
+                      value: 4444
+                    - name: DISPLAY
+                      value: :99.0
+                    - name: SE_OPTS
+                      value: -port 5556
+                    tty: true
+                  - name: curl
+                    image: byrnedo/alpine-curl
+                    command:
+                    - cat
+                    tty: true
+                '''
+        }
+    }
+
+    stages {
+        stage('clone') {
+            steps {
+                sh "git clone https://github.com/alexwatts/test-examples"
+            }
+        }
+        stage('build') {
+            steps {
+              container('gradle') {
+                  catchError() {
+                       sh "gradle --no-daemon test -Dcucumber.options='@TeamOne' -b test-examples/build.gradle"
+                  }
+                  container('curl') {
+                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://138.68.170.14:30001/reports/team-two"
+                  }
+              }
+            }
+        }
+    }
+}

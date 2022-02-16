@@ -12,3 +12,7 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+test {
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.options")
+}
