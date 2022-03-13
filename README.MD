@@ -4,7 +4,7 @@ This is a test harness for TestHub. It simulates a real CI/CD pipeline that is r
 
 It runs some tests steps in cucumber JVM, which are coded to randomly pass or fail. These test reports can be submitted to local/staging instances of TestHub to generate reports to view.
 
-There is a staging version of testhub deployed here (http://138.68.170.14:30001/)
+There is a staging version of testhub deployed here (http://134.209.180.137:30001/)
 
 There is a jenkins pipeline configured here to run this job against the staging testhub and to generate test reports. It's named `test-examples`
 
@@ -12,7 +12,7 @@ There is a jenkins pipeline configured here to run this job against the staging 
 username: testhub
 password: contributor
 
-http://138.68.170.14:30000
+http://134.209.180.137:30000
 ```
 
 ## Getting Started
