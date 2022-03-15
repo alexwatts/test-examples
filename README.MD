@@ -6,7 +6,7 @@ It runs some tests steps in cucumber JVM, which are coded to randomly pass or fa
 
 There is a staging version of testhub deployed here (http://134.209.180.137:30001/)
 
-There is a jenkins pipeline configured here to run this job against the staging testhub and to generate test reports. It's named `test-examples`
+There is a jenkins pipeline configured [here](http://134.209.180.137:30000) to run this job against the staging testhub and to generate test reports. It's named `test-examples`
 
 ```
 username: testhub
