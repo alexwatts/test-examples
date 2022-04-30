@@ -4,9 +4,9 @@ This is a test harness for TestHub. It simulates a real CI/CD pipeline that is r
 
 It runs some tests steps in cucumber JVM, which are coded to randomly pass or fail. These test reports can be submitted to local/staging instances of TestHub to generate reports to view.
 
-There is a staging version of testhub deployed here (http://209.97.191.101:30001/)
+There is a staging version of testhub deployed here (http://142.93.32.151:30001/)
 
-There is a jenkins pipeline configured [here](http://209.97.191.101:30000) to run this job against the staging testhub and to generate test reports. It's named `test-examples`. You can access it with the below credentials
+There is a jenkins pipeline configured [here](http://142.93.32.151:30000/) to run this job against the staging testhub and to generate test reports. It's named `test-examples`. You can access it with the below credentials
 
 ```
 username: testhub
@@ -41,5 +41,5 @@ curl -v -XPOST -H 'Content-Type:application/json' -d @build/cucumber-reports.jso
 
 Staging
 ```
-curl -v -XPOST -H 'Content-Type:application/json' -d @build/cucumber-reports.json http://165.22.127.149:30001/reports/test-examples
+curl -v -XPOST -H 'Content-Type:application/json' -d @build/cucumber-reports.json http://142.93.32.151:30001/reports/test-examples
 ```
