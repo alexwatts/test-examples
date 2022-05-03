@@ -13,9 +13,9 @@ pipeline {
                     tty: true
                     resources:
                       requests:
-                        memory: "128Mi"
+                        memory: "256Mi"
                       limits:
-                        memory: "128Mi"
+                        memory: "512Mi"
                   - name: selenium-hub
                     image: selenium/hub:3.4.0
                     resources:
