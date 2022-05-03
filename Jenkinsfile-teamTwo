@@ -11,18 +11,8 @@ pipeline {
                     command:
                     - cat
                     tty: true
-                    resources:
-                      requests:
-                        memory: "256Mi"
-                      limits:
-                        memory: "512Mi"
                   - name: selenium-hub
                     image: selenium/hub:3.4.0
-                    resources:
-                      requests:
-                        memory: "64Mi"
-                      limits:
-                        memory: "64Mi"
                   - name: selenium-chrome
                     image: selenium/node-chrome:3.4.0
                     env:
@@ -35,21 +25,11 @@ pipeline {
                     - name: SE_OPTS
                       value: -port 5556
                     tty: true
-                    resources:
-                      requests:
-                        memory: "126Mi"
-                      limits:
-                        memory: "128Mi"
                   - name: curl
                     image: byrnedo/alpine-curl
                     command:
                     - cat
                     tty: true
-                    resources:
-                      requests:
-                        memory: "64Mi"
-                      limits:
-                        memory: "64Mi"
                 '''
         }
     }
