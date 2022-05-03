@@ -20,9 +20,9 @@ pipeline {
                     image: selenium/hub:3.4.0
                     resources:
                       requests:
-                        memory: "128Mi"
+                        memory: "64Mi"
                       limits:
-                        memory: "128Mi"
+                        memory: "64Mi"
                   - name: selenium-chrome
                     image: selenium/node-chrome:3.4.0
                     env:
@@ -37,9 +37,9 @@ pipeline {
                     tty: true
                     resources:
                       requests:
-                        memory: "256Mi"
+                        memory: "126Mi"
                       limits:
-                        memory: "256Mi"
+                        memory: "128Mi"
                   - name: curl
                     image: byrnedo/alpine-curl
                     command:
