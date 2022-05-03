@@ -37,9 +37,9 @@ pipeline {
                     tty: true
                     resources:
                       requests:
-                        memory: "128Mi"
+                        memory: "256Mi"
                       limits:
-                        memory: "128Mi"
+                        memory: "256Mi"
                   - name: curl
                     image: byrnedo/alpine-curl
                     command:
