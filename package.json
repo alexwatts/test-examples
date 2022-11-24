@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "cypress:run": "npx cypress run  --spec src/test/cypress/e2e/example-team3-cy.js"
+  },
+  "dependencies": {
+    "cypress": "^11.1.0",
+    "cypress-failed-log": "^2.10.0",
+    "mochawesome": "^7.1.3",
+    "moment": "^2.29.4"
+  }
+}
