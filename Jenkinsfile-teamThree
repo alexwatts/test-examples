@@ -31,7 +31,7 @@ pipeline {
               container('cypress') {
                   sh "yarn install"
                   catchError() {
-                       sh "npx cypress run  --spec test-examples/src/test/cypress/e2e/example-team3-cy.js"
+                       sh "npx cypress run  --spec src/test/cypress/e2e/example-team3-cy.js"
                   }
                   container('curl') {
                        sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/results/my-test-output.xml http://165.22.112.179:30001/reports/team-three"
