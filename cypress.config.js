@@ -6,7 +6,7 @@ module.exports = defineConfig({
   outputs: true,
   reporterOptions: {
     outputs: "true",
-    mochaFile: 'results/my-test-output-[hash].xml',
+    mochaFile: 'results/my-test-output.xml',
     toConsole: true
   },
   e2e: {

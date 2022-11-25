@@ -1,0 +1,42 @@
+pipeline {
+    agent {
+        kubernetes{
+            yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                  - name: cypress
+                    image: cypress/browsers:node12.14.1-chrome85-ff81
+                    command:
+                    - cat
+                    tty: true
+                  - name: curl
+                    image: byrnedo/alpine-curl
+                    command:
+                    - cat
+                    tty: true
+                '''
+        }
+    }
+
+    stages {
+        stage('clone') {
+            steps {
+                sh "git clone https://github.com/alexwatts/test-examples"
+            }
+        }
+        stage('build') {
+            steps {
+              container('cypress') {
+                  catchError() {
+                       sh "npx cypress run  --spec test-examples/src/test/cypress/e2e/example-team3-cy.js"
+                  }
+                  container('curl') {
+                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/results/results/my-test-output.xml http://165.22.112.179:30001/reports/team-three"
+                  }
+              }
+            }
+        }
+    }
+}
