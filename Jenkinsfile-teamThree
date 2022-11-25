@@ -29,6 +29,7 @@ pipeline {
         stage('build') {
             steps {
               container('cypress') {
+                  sh "yarn install"
                   catchError() {
                        sh "npx cypress run  --spec test-examples/src/test/cypress/e2e/example-team3-cy.js"
                   }
