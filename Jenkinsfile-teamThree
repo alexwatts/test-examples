@@ -31,7 +31,7 @@ pipeline {
               container('cypress') {
                   sh "yarn install"
                   catchError() {
-                       sh "export BUILD_URL='http://165.22.112.179:30000/job/test-examples-team-three/${currentBuild.number}' && export PROPERTIES=BUILD_ID:$BUILD_URL && npx cypress run --spec src/test/cypress/e2e/example-team3-cy.js"
+                       sh "export BUILD_URL='http%3A%2F%2F165.22.112.179%3A30000%2Fjob%2Ftest-examples-team-three%2F${currentBuild.number}' && export PROPERTIES=BUILD_ID:$BUILD_URL && npx cypress run --spec src/test/cypress/e2e/example-team3-cy.js"
                   }
                   container('curl') {
                        sh "curl -v -XPOST -H 'Content-Type:application/json' -d @results/my-test-output.xml http://165.22.112.179:30001/reports/team-three"
