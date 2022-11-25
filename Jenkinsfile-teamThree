@@ -30,9 +30,8 @@ pipeline {
             steps {
               container('cypress') {
                   sh "yarn install"
-                  sh "export PROPERTIES=BUILD_ID:${currentBuild.number}"
                   catchError() {
-                       sh "npx cypress run  --spec src/test/cypress/e2e/example-team3-cy.js"
+                       sh "export PROPERTIES=BUILD_ID:${currentBuild.number} && npx cypress run --spec src/test/cypress/e2e/example-team3-cy.js"
                   }
                   container('curl') {
                        sh "curl -v -XPOST -H 'Content-Type:application/json' -d @results/my-test-output.xml http://165.22.112.179:30001/reports/team-three"

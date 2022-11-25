@@ -16,25 +16,6 @@ module.exports = defineConfig({
     specPattern: 'src/test/cypress/e2e/**/*.{js,jsx,ts,tsx}',
     setupNodeEvents(on, config) {
 
-
-        on('before:browser:launch', (browser, launchOptions) => {
-          if (browser.name === 'chrome') {
-            launchOptions.args.push('--disable-dev-shm-usage')
-          }
-
-          return launchOptions
-        })
-//      on('task', {
-//            cleanUpResults({ testPath }) {
-//              console.log('%s', testPath)
-//              return null
-//            },
-//          copyFile({ src, dst }) {
-//            console.log('%s, %s', src, dst)
-//            return null
-//          },
-//
-//        })
     }
   }
 })
