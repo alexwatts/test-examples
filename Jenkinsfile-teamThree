@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes{
-            nodeSelector 'kubernetes.io/hostname=pool-fv2ocqhbe-mtzzh'
+            nodeSelector 'kubernetes.io/hostname=pool-fv2ocqhbe-mt9wx'
             yaml '''
                 apiVersion: v1
                 kind: Pod
