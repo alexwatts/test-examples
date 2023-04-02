@@ -48,7 +48,7 @@ pipeline {
                        sh "gradle --no-daemon test -Dcucumber.options='@TeamTwo' -b test-examples/build.gradle"
                   }
                   container('curl') {
-                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://167.71.142.7:30001/reports/team-two"
+                       sh "curl -v -XPOST -H 'Content-Type:application/json' -d @test-examples/build/cucumber-reports.json http://167.99.206.192:30001/reports/team-two"
                   }
               }
             }
